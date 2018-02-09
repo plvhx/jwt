@@ -1,0 +1,9 @@
+./result/
+./vendor/
+./clover.xml
+./composer.lock
+./Dockerfile
+./ecc-tests.php
+./Makefile
+./run-dummy.sh
+./tests.php
