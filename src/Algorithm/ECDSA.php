@@ -3,7 +3,6 @@
 namespace Gandung\JWT\Algorithm;
 
 use Gandung\JWT\Adapter\ECDSAAdapterInterface;
-use Gandung\JWT\CertificateLoader;
 use Gandung\JWT\SignerInterface;
 use Gandung\JWT\Manager\KeyManagerInterface;
 use Mdanter\Ecc\Crypto\Key\PrivateKeyInterface;
