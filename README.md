@@ -171,3 +171,33 @@ $isSignatureMatched = $jwt->verifyToken($token, $jose, $payload, $key);
 
 var_dump($isSignatureMatched);
 ```
+
+### ECDSA
+
+```php
+use Gandung\JWT\JWTFactory;
+
+$token = "eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6ImFwcGxpY2F0aW9uL2pzb24ifQ.eyJpc3MiOiJtZSIsImV4cCI6MTUxODE4MDM3MSwiY3JlZGVudGlhbHMiOnsidXNlcm5hbWUiOiJtZSIsInBhc3N3b3JkIjoidGhpc19pc19tZV93aG9fd2FudF90b19nZXRfaW4ifX0.-rHgMBeVqA5sP_gP6301PZ9NWy93ZO0lBQnJw0g2qCrvF4oz0IjePN8kLVdqIJkGG8E26-5HktKJcCJROBJ5ig";
+$key = JWTFactory::getKeyManager();
+// See: cert/secp256.pem (Private Key)
+$key->setContentFromCertFile('cert/secp256.pem');
+$header = JWTFactory::getJoseBuilder()
+	->algorithm(\Gandung\JWT\Token\Algorithm::ES256)
+	->type('JWT')
+	->contentType('application/json');
+$claim = JWTFactory::getClaimBuilder()
+	->issuedBy('me')
+	->expireAt(new \DateTimeImmutable('@1518180371'));
+$payload = JWTFactory::getPayloadBuilder()
+	->claim($claim)
+	->userData([
+		'credentials' => [
+			'username' => 'me',
+			'password' => 'this_is_me_who_want_to_get_in'
+		]
+	]);
+$jwt = JWTFactory::getJwt();
+$isSignatureMatched = $jwt->verifyToken($token, $jose, $payload, $key);
+
+var_dump($isSignatureMatched);
+```
