@@ -12,6 +12,7 @@ An implementation of JSON Web Token based on [RFC 7519](https://tools.ietf.org/h
 		- [HMAC](#hmac)
 		- [RSA](#rsa)
 		- [ECDSA](#ecdsa)
+	- [Validating Token Constraints](#validating-token-constraints)
 
 ## Dependencies
 - PHP 7.0+
@@ -200,4 +201,21 @@ $jwt = JWTFactory::getJwt();
 $isSignatureMatched = $jwt->verifyToken($token, $jose, $payload, $key);
 
 var_dump($isSignatureMatched);
+```
+
+### Validating Token Constraints
+
+```php
+use Gandung\JWT\Validator\Validator;
+
+$token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6ImFwcGxpY2F0aW9uL2pzb24ifQ.eyJpc3MiOiJtZSIsImV4cCI6MTUxODE3ODU5MywiY3JlZGVudGlhbHMiOnsidXNlcm5hbWUiOiJtZSIsInBhc3N3b3JkIjoidGhpc19pc19tZV93aG9fd2FudF90b19nZXRfaW4ifX0.NbX9ZGfadSYlAdgCaDklIYb4Nw2UCfxRJxoKgxZVURo";
+$validator = new Validator;
+$validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Jose\Algorithm);
+$validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Jose\ContentType);
+$validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Jose\Type);
+$validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Payload\IssuedBy);
+$validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Payload\ExpirationTime);
+$isValidated = $validator->validate($token);
+
+var_dump($isValidated);
 ```
