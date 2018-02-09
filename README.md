@@ -219,3 +219,5 @@ $isValidated = $validator->validate($token);
 
 var_dump($isValidated);
 ```
+
+If you find any bugs, feel free to send me a pull request.
