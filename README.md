@@ -83,7 +83,7 @@ echo sprintf("Token: %s\n", $token);
 
 ### ECDSA
 
-```
+```php
 use Gandung\JWT\JWTFactory;
 
 $key = JWTFactory::getKeyManager();
@@ -108,4 +108,35 @@ $jwt = JWTFactory::getJwt();
 $token = $jwt->createToken($header, $payload, $key);
 
 echo sprintf("Token: %s\n", $token);
+```
+
+### Validating Signature
+
+### HMAC
+
+```php
+use Gandung\JWT\JWTFactory;
+
+$token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImN0eSI6ImFwcGxpY2F0aW9uL2pzb24ifQ.eyJpc3MiOiJtZSIsImV4cCI6MTUxODE3ODU5MywiY3JlZGVudGlhbHMiOnsidXNlcm5hbWUiOiJtZSIsInBhc3N3b3JkIjoidGhpc19pc19tZV93aG9fd2FudF90b19nZXRfaW4ifX0.NbX9ZGfadSYlAdgCaDklIYb4Nw2UCfxRJxoKgxZVURo";
+$key = JWTFactory::getKeyManager();
+$key->setPassphrase('secret');
+$header = JWTFactory::getJoseBuilder()
+	->algorithm(\Gandung\JWT\Token\Algorithm::HS256)
+	->type('JWT')
+	->contentType('application/json');
+$claim = JWTFactory::getClaimBuilder()
+	->issuedBy('me')
+	->exp(new \DateTimeImmutable('@1518178593'));
+$payload = JWTFactory::getPayloadBuilder()
+	->claim($claim)
+	->userData([
+		'credentials' => [
+			'username' => 'me',
+			'password' => 'this_is_me_who_want_to_get_in'
+		]
+	]);
+$jwt = JWTFactory::getJwt();
+$isSignatureMatched = $jwt->verifyToken($token, $jose, $payload, $key);
+
+var_dump($isSignatureMatched);
 ```
