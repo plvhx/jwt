@@ -15,8 +15,7 @@
         "ext-gmp": "*",
         "ext-mbstring": "*",
         "gandung/http-message": "^1.0",
-        "ocramius/proxy-manager": "^2.2",
-        "phpunit/phpunit": "^7.0"
+        "ocramius/proxy-manager": "^2.2"
     },
     "autoload": {
         "psr-4": {
@@ -26,7 +25,8 @@
         "files": ["src/functions_include.php"]
     },
     "require-dev": {
-        "mdanter/ecc": "^0.5.0"
+        "mdanter/ecc": "^0.5.0",
+        "phpunit/phpunit": "^7.0"
     },
     "minimum-stability": "stable"
 }
