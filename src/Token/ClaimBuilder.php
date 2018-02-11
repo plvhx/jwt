@@ -76,15 +76,18 @@ class ClaimBuilder implements ClaimBuilderInterface
      */
     public function getValue()
     {
-        if (isset($this->claim[Claim::EXPIRATION_TIME])) {
+        if (isset($this->claim[Claim::EXPIRATION_TIME]) &&
+            $this->claim[Claim::EXPIRATION_TIME] instanceof \DateTimeInterface) {
             $this->claim[Claim::EXPIRATION_TIME] = (int)$this->claim[Claim::EXPIRATION_TIME]->format('U');
         }
 
-        if (isset($this->claim[Claim::NOT_BEFORE])) {
+        if (isset($this->claim[Claim::NOT_BEFORE]) &&
+            $this->claim[Claim::NOT_BEFORE] instanceof \DateTimeInterface) {
             $this->claim[Claim::NOT_BEFORE] = (int)$this->claim[Claim::NOT_BEFORE]->format('U');
         }
 
-        if (isset($this->claim[Claim::ISSUED_AT])) {
+        if (isset($this->claim[Claim::ISSUED_AT]) &&
+            $this->claim[Claim::ISSUED_AT] instanceof \DateTimeInterface) {
             $this->claim[Claim::ISSUED_AT] = (int)$this->claim[Claim::ISSUED_AT]->format('U');
         }
         
