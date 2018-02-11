@@ -14,7 +14,7 @@
         "ext-openssl": "*",
         "ext-gmp": "*",
         "ext-mbstring": "*",
-        "gandung/http-message": "dev-master",
+        "gandung/http-message": "^1.0",
         "ocramius/proxy-manager": "^2.2",
         "phpunit/phpunit": "^7.0"
     },
