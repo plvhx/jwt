@@ -1,5 +1,8 @@
 # JSON Web Token
 
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/plvhx/jwt/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/plvhx/jwt/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/plvhx/jwt/badges/build.png?b=master)](https://scrutinizer-ci.com/g/plvhx/jwt/build-status/master)
+
 An implementation of JSON Web Token based on [RFC 7519](https://tools.ietf.org/html/rfc7519).
 
 - [Dependencies](#dependencies)
