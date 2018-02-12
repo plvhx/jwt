@@ -50,6 +50,37 @@ class Validator implements ValidatorInterface
         return true;
     }
 
+    /**
+     * Validate constraints from given array.
+     *
+     * @param array $array
+     * @param null|object $key
+     * @return boolean
+     * @throws \RuntimeException when supplied array doesn't matched given constraint.
+     */
+    public function validateFromArray($array, $key = null)
+    {
+        if (is_null($key)) {
+            $this->normalizeConstraints();
+
+            foreach ($this->constraint as $c) {
+                if (!array_key_exists($c, $array)) {
+                    throw new \RuntimeException(
+                        sprintf("Supplied data doesn't have '%s' constraint.", $c)
+                    );
+                }
+            }
+        } else {
+            if (!array_key_exists($key->getValue(), $array)) {
+                throw new \RuntimeException(
+                    sprintf("Supplied data doesn't have '%s' constraint.", $key->getValue())
+                );
+            }
+        }
+
+        return true;
+    }
+
     private function unserializePortion($portion)
     {
         return json_decode(
