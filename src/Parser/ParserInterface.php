@@ -10,33 +10,33 @@ use Gandung\JWT\Accessor\PayloadAccessorInterface;
  */
 interface ParserInterface
 {
-	/**
-	 * Parse JWT token.
-	 *
-	 * @param string $token
-	 * @return void
-	 */
-	public function parse($token);
+    /**
+     * Parse JWT token.
+     *
+     * @param string $token
+     * @return void
+     */
+    public function parse($token);
 
-	/**
-	 * Get signature from given JWT token.
-	 *
-	 * @param boolean $raw
-	 * @return string
-	 */
-	public function getSignature($raw = true);
+    /**
+     * Get signature from given JWT token.
+     *
+     * @param boolean $raw
+     * @return string
+     */
+    public function getSignature($raw = true);
 
-	/**
-	 * Get JOSE header from given JWT token.
-	 *
-	 * @return JoseHeaderAccessorInterface
-	 */
-	public function getJoseHeader(): JoseHeaderAccessorInterface;
+    /**
+     * Get JOSE header from given JWT token.
+     *
+     * @return JoseHeaderAccessorInterface
+     */
+    public function getJoseHeader(): JoseHeaderAccessorInterface;
 
-	/**
-	 * Get payload from given JWT token.
-	 *
-	 * @return PayloadAccessorInterface
-	 */
-	public function getPayload(): PayloadAccessorInterface;
+    /**
+     * Get payload from given JWT token.
+     *
+     * @return PayloadAccessorInterface
+     */
+    public function getPayload(): PayloadAccessorInterface;
 }

@@ -7,10 +7,10 @@ namespace Gandung\JWT\Accessor;
  */
 interface AccessorInterface
 {
-	/**
-	 * Get given JWT portion.
-	 *
-	 * @return array
-	 */
-	public function get();
+    /**
+     * Get given JWT portion.
+     *
+     * @return array
+     */
+    public function get();
 }

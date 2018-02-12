@@ -7,45 +7,45 @@ namespace Gandung\JWT\Accessor;
  */
 interface JoseHeaderAccessorInterface extends AccessorInterface
 {
-	/**
-	 * Get algorithm.
-	 *
-	 * @return string
-	 */
-	public function getAlgorithm();
+    /**
+     * Get algorithm.
+     *
+     * @return string
+     */
+    public function getAlgorithm();
 
-	/**
-	 * Get JWK set url.
-	 *
-	 * @return string
-	 */
-	public function getJwkSetUrl();
+    /**
+     * Get JWK set url.
+     *
+     * @return string
+     */
+    public function getJwkSetUrl();
 
-	/**
-	 * Get key ID.
-	 *
-	 * @return string
-	 */
-	public function getKeyID();
+    /**
+     * Get key ID.
+     *
+     * @return string
+     */
+    public function getKeyID();
 
-	/**
-	 * Get X509 url.
-	 *
-	 * @return string
-	 */
-	public function getX509Url();
+    /**
+     * Get X509 url.
+     *
+     * @return string
+     */
+    public function getX509Url();
 
-	/**
-	 * Get type.
-	 *
-	 * @return string
-	 */
-	public function getType();
+    /**
+     * Get type.
+     *
+     * @return string
+     */
+    public function getType();
 
-	/**
-	 * Get content type.
-	 *
-	 * @return string
-	 */
-	public function getContentType();
+    /**
+     * Get content type.
+     *
+     * @return string
+     */
+    public function getContentType();
 }

@@ -9,145 +9,145 @@ use Gandung\JWT\Validator\Validator;
  */
 class PayloadAccessor implements PayloadAccessorInterface
 {
-	/**
-	 * @var array
-	 */
-	private $payload;
+    /**
+     * @var array
+     */
+    private $payload;
 
-	/**
-	 * @var \Gandung\JWT\ValidatorInterface
-	 */
-	private $validator;
+    /**
+     * @var \Gandung\JWT\ValidatorInterface
+     */
+    private $validator;
 
-	public function __construct($payload)
-	{
-		$this->payload = $payload;
-		$this->configureValidator();
-	}
+    public function __construct($payload)
+    {
+        $this->payload = $payload;
+        $this->configureValidator();
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getIssuedBy()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\IssuedBy
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getIssuedBy()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\IssuedBy
+        );
 
-		return $this->payload[\Gandung\JWT\Token\Claim::ISSUER];
-	}
+        return $this->payload[\Gandung\JWT\Token\Claim::ISSUER];
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getRelatedTo()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\RelatedTo
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getRelatedTo()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\RelatedTo
+        );
 
-		return $this->payload[\Gandung\JWT\Token\Claim::SUBJECT];
-	}
+        return $this->payload[\Gandung\JWT\Token\Claim::SUBJECT];
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getIntendedFor()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\IntendedTo
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getIntendedFor()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\IntendedTo
+        );
 
-		return $this->payload[\Gandung\JWT\Token\Claim::AUDIENCE];
-	}
+        return $this->payload[\Gandung\JWT\Token\Claim::AUDIENCE];
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getExpireAt()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\ExpirationTime
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getExpireAt()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\ExpirationTime
+        );
 
-		$exp = $this->payload[\Gandung\JWT\Token\Claim::EXPIRATION_TIME];
+        $exp = $this->payload[\Gandung\JWT\Token\Claim::EXPIRATION_TIME];
 
-		return !($exp instanceof \DateTimeImmutable) && is_int($exp)
-			? new \DateTimeImmutable('@' . (string)$exp)
-			: $exp;
-	}
+        return !($exp instanceof \DateTimeImmutable) && is_int($exp)
+            ? new \DateTimeImmutable('@' . (string)$exp)
+            : $exp;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getCanOnlyBeUsedAfter()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\NotBefore
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getCanOnlyBeUsedAfter()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\NotBefore
+        );
 
-		$nbf = $this->payload[\Gandung\JWT\Token\Claim::NOT_BEFORE];
+        $nbf = $this->payload[\Gandung\JWT\Token\Claim::NOT_BEFORE];
 
-		return !($nbf instanceof \DateTimeImmutable) && is_int($nbf)
-			? new \DateTimeImmutable('@' . (string)$nbf)
-			: $nbf;
-	}
+        return !($nbf instanceof \DateTimeImmutable) && is_int($nbf)
+            ? new \DateTimeImmutable('@' . (string)$nbf)
+            : $nbf;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getIssuedAt()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\IssuedAt
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getIssuedAt()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\IssuedAt
+        );
 
-		$iat = $this->payload[\Gandung\JWT\Token\Claim::ISSUED_AT];
+        $iat = $this->payload[\Gandung\JWT\Token\Claim::ISSUED_AT];
 
-		return !($iat instanceof \DateTimeImmutable) && is_int($iat)
-			? new \DateTimeImmutable('@' . (string)$iat)
-			: $iat;
-	}
+        return !($iat instanceof \DateTimeImmutable) && is_int($iat)
+            ? new \DateTimeImmutable('@' . (string)$iat)
+            : $iat;
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function getIdentifiedBy()
-	{
-		$this->validator->validateFromArray(
-			$this->payload,
-			new \Gandung\JWT\Validator\Constraints\Payload\JWTID
-		);
+    /**
+     * {@inheritdoc}
+     */
+    public function getIdentifiedBy()
+    {
+        $this->validator->validateFromArray(
+            $this->payload,
+            new \Gandung\JWT\Validator\Constraints\Payload\JWTID
+        );
 
-		return $this->payload[\Gandung\JWT\Token\Claim::JWT_ID];
-	}
+        return $this->payload[\Gandung\JWT\Token\Claim::JWT_ID];
+    }
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function get()
-	{
-		return $this->payload;
-	}
-	
-	/**
-	 * Configure validator object.
-	 *
-	 * @param array $constraints
-	 * @return void
-	 */
-	private function configureValidator($constraints = [])
-	{
-		$this->validator = new Validator;
+    /**
+     * {@inheritdoc}
+     */
+    public function get()
+    {
+        return $this->payload;
+    }
+    
+    /**
+     * Configure validator object.
+     *
+     * @param array $constraints
+     * @return void
+     */
+    private function configureValidator($constraints = [])
+    {
+        $this->validator = new Validator;
 
-		foreach ($constraints as $v) {
-			$this->validator->addConstraint($v);
-		}
-	}
+        foreach ($constraints as $v) {
+            $this->validator->addConstraint($v);
+        }
+    }
 }
