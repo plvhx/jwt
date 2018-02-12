@@ -12,47 +12,47 @@ interface PayloadAccessorInterface extends AccessorInterface
      *
      * @return string
      */
-    public function getIssuedBy();
+    public function getIssuedBy(): string;
 
     /**
      * Get "sub" claim.
      *
      * @return string
      */
-    public function getRelatedTo();
+    public function getRelatedTo(): string;
 
     /**
      * Get "aud" claim.
      *
      * @return string
      */
-    public function getIntendedFor();
+    public function getIntendedFor(): string;
 
     /**
      * Get "exp" claim.
      *
      * @return \DateTimeInterface
      */
-    public function getExpireAt();
+    public function getExpireAt(): \DateTimeInterface;
 
     /**
      * Get "nbf" claim.
      *
      * @return \DateTimeInterface
      */
-    public function getCanOnlyBeUsedAfter();
+    public function getCanOnlyBeUsedAfter(): \DateTimeInterface;
 
     /**
      * Get "iat" claim.
      *
      * @return \DateTimeInterface
      */
-    public function getIssuedAt();
+    public function getIssuedAt(): \DateTimeInterface;
 
     /**
      * Get "jti" claim.
      *
      * @return string
      */
-    public function GetIdentifiedBy();
+    public function getIdentifiedBy(): string;
 }

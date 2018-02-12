@@ -28,7 +28,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getIssuedBy()
+    public function getIssuedBy(): string
     {
         $this->validator->validateFromArray(
             $this->payload,
@@ -41,7 +41,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getRelatedTo()
+    public function getRelatedTo(): string
     {
         $this->validator->validateFromArray(
             $this->payload,
@@ -54,11 +54,11 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getIntendedFor()
+    public function getIntendedFor(): string
     {
         $this->validator->validateFromArray(
             $this->payload,
-            new \Gandung\JWT\Validator\Constraints\Payload\IntendedTo
+            new \Gandung\JWT\Validator\Constraints\Payload\IntendedFor
         );
 
         return $this->payload[\Gandung\JWT\Token\Claim::AUDIENCE];
@@ -67,7 +67,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getExpireAt()
+    public function getExpireAt(): \DateTimeInterface
     {
         $this->validator->validateFromArray(
             $this->payload,
@@ -84,7 +84,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getCanOnlyBeUsedAfter()
+    public function getCanOnlyBeUsedAfter(): \DateTimeInterface
     {
         $this->validator->validateFromArray(
             $this->payload,
@@ -101,7 +101,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getIssuedAt()
+    public function getIssuedAt(): \DateTimeInterface
     {
         $this->validator->validateFromArray(
             $this->payload,
@@ -118,7 +118,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getIdentifiedBy()
+    public function getIdentifiedBy(): string
     {
         $this->validator->validateFromArray(
             $this->payload,
@@ -131,7 +131,7 @@ class PayloadAccessor implements PayloadAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function get()
+    public function get(): array
     {
         return $this->payload;
     }

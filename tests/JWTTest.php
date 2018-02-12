@@ -18,12 +18,12 @@ class JWTTest extends TestCase
         $refl = new \ReflectionClass(JWT::class);
         $method = $refl->getMethod('validateKey');
         $method->setAccessible(true);
-        $method->invokeArgs(new JWT, [$key, \Gandung\JWT\Token\Algorithm::ES256]);
+        $method->invokeArgs(JWT::create(), [$key, \Gandung\JWT\Token\Algorithm::ES256]);
     }
 
     public function testCanGetInstance()
     {
-        $this->assertInstanceOf(JWT::class, new JWT);
+        $this->assertInstanceOf(JWT::class, JWT::create());
     }
 
     public function testCanGetInstanceFromFactory()
@@ -50,7 +50,7 @@ class JWTTest extends TestCase
                     'password' => 'gandung31337'
                 ]
             ]);
-        $jwt = new JWT;
+        $jwt = JWT::create();
         $token = $jwt->createToken($jose, $payload, $key);
         $this->assertInternalType('string', $token);
         $this->assertNotEmpty($token);
@@ -76,7 +76,7 @@ class JWTTest extends TestCase
                     'password' => 'gandung31337'
                 ]
             ]);
-        $jwt = new JWT;
+        $jwt = JWT::create();
         $token = $jwt->createToken($jose, $payload, $key);
         $this->assertInternalType('string', $token);
         $this->assertNotEmpty($token);
@@ -101,7 +101,7 @@ class JWTTest extends TestCase
                     'password' => 'gandung31337'
                 ]
             ]);
-        $jwt = new JWT;
+        $jwt = JWT::create();
         $token = $jwt->createToken($jose, $payload, $key);
         $this->assertInternalType('string', $token);
         $this->assertNotEmpty($token);

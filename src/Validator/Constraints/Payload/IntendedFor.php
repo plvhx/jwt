@@ -7,7 +7,7 @@ use Gandung\JWT\Validator\Constraints\BaseConstraint;
 /**
  * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
  */
-class IntendedTo extends BaseConstraint
+class IntendedFor extends BaseConstraint
 {
     /**
      * {@inheritdoc}

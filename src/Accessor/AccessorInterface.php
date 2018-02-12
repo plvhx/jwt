@@ -12,5 +12,5 @@ interface AccessorInterface
      *
      * @return array
      */
-    public function get();
+    public function get(): array;
 }

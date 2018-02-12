@@ -17,7 +17,7 @@ class JWTFactory
      */
     public static function getJwt()
     {
-        return new JWT;
+        return JWT::create();
     }
 
     /**

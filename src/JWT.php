@@ -8,6 +8,8 @@ use Gandung\JWT\Token\PayloadBuilderInterface;
 use Gandung\JWT\Proxy\HMAC;
 use Gandung\JWT\Proxy\RSA;
 use Gandung\JWT\Proxy\ECDSA;
+use Gandung\JWT\Parser\Parser;
+use Gandung\JWT\Parser\ParserInterface;
 
 /**
  * @author Paulus Gandung Prakosa <rvn.plvhx@gmail.com>
@@ -24,13 +26,27 @@ class JWT
      */
     private $proxy;
 
-    public function __construct()
+    /**
+     * @var ParserInterface
+     */
+    private $parser;
+
+    public function __construct(ParserInterface $parser)
     {
         $this->proxy = [
             'hmac' => HMAC::create(),
             'rsa' => RSA::create(),
             'ecdsa' => ECDSA::create()
         ];
+        $this->parser = $parser;
+    }
+
+    /**
+     * For chainability purpose.
+     */
+    public static function create()
+    {
+        return new static(new Parser());
     }
 
     /**
@@ -76,9 +92,10 @@ class JWT
         $portion = [];
         $portion[] = $jose->getValue();
         $portion[] = $payload->getValue();
-        $signature = \Gandung\JWT\__jwt_base64UrlDecode(
-            explode('.', $expected)[2]
-        );
+
+        $this->parser->parse($expected);
+
+        $signature = $this->parser->getSignature();
         $currentAlgo = $portion[0]['alg'];
 
         $this->determineSigningAlgorithm($currentAlgo);

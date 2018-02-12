@@ -13,7 +13,7 @@ use Gandung\JWT\JWTFactory;
 class PayloadAccessorTest extends TestCase
 {
     /**
-     * @var
+     * @var PayloadBuilderInterface
      */
     private $payload;
 

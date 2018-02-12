@@ -114,7 +114,7 @@ class ValidatorTest extends TestCase
     public function testCanRaiseExceptionWhenValidatingTokenWithNoAudienceInIt()
     {
         $validator = new Validator;
-        $validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Payload\IntendedTo);
+        $validator->addConstraint(new \Gandung\JWT\Validator\Constraints\Payload\IntendedFor);
         $validator->validate($this->token);
     }
 

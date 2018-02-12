@@ -12,40 +12,54 @@ interface JoseHeaderAccessorInterface extends AccessorInterface
      *
      * @return string
      */
-    public function getAlgorithm();
+    public function getAlgorithm(): string;
 
     /**
      * Get JWK set url.
      *
      * @return string
      */
-    public function getJwkSetUrl();
+    public function getJwkSetUrl(): string;
+
+    /**
+     * Get JSON web key.
+     *
+     * @return string
+     */
+    public function getJsonWebKey(): string;
 
     /**
      * Get key ID.
      *
      * @return string
      */
-    public function getKeyID();
+    public function getKeyID(): string;
 
     /**
      * Get X509 url.
      *
      * @return string
      */
-    public function getX509Url();
+    public function getX509Url(): string;
 
+    /**
+     * Get X509 certificate chain.
+     *
+     * @return string
+     */
+    public function getX509CertificateChain(): string;
+    
     /**
      * Get type.
      *
      * @return string
      */
-    public function getType();
+    public function getType(): string;
 
     /**
      * Get content type.
      *
      * @return string
      */
-    public function getContentType();
+    public function getContentType(): string;
 }

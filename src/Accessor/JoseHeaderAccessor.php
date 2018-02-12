@@ -28,7 +28,7 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getAlgorithm()
+    public function getAlgorithm(): string
     {
         $this->validator->validateFromArray(
             $this->jose,
@@ -41,7 +41,7 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getJwkSetUrl()
+    public function getJwkSetUrl(): string
     {
         $this->validator->validateFromArray(
             $this->jose,
@@ -54,7 +54,20 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getKeyID()
+    public function getJsonWebKey(): string
+    {
+        $this->validator->validateFromArray(
+            $this->jose,
+            new \Gandung\JWT\Validator\Constraints\Jose\JsonWebKey
+        );
+
+        return $this->jose[\Gandung\JWT\Token\Jose::JSON_WEB_KEY];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getKeyID(): string
     {
         $this->validator->validateFromArray(
             $this->jose,
@@ -67,7 +80,7 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getX509Url()
+    public function getX509Url(): string
     {
         $this->validator->validateFromArray(
             $this->jose,
@@ -80,7 +93,20 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getType()
+    public function getX509CertificateChain(): string
+    {
+        $this->validator->validateFromArray(
+            $this->jose,
+            new \Gandung\JWT\Validator\Constraints\Jose\X509CertificateChain
+        );
+
+        return $this->jose[\Gandung\JWT\Token\Jose::X509_CERTIFICATE_CHAIN];
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getType(): string
     {
         $this->validator->validateFromArray(
             $this->jose,
@@ -93,7 +119,7 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function getContentType()
+    public function getContentType(): string
     {
         $this->validator->validateFromArray(
             $this->jose,
@@ -106,7 +132,7 @@ class JoseHeaderAccessor implements JoseHeaderAccessorInterface
     /**
      * {@inheritdoc}
      */
-    public function get()
+    public function get(): array
     {
         return $this->jose;
     }
